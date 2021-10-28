@@ -7,6 +7,51 @@
    <title>Document</title>
 </head>
 <body>
-   
+   <script>
+       let lastName="";
+       let name="";
+       let maddleName="";
+
+      
+
+       do{
+         lastName=prompt('Введите вашу фамилию, поле ввода не должно быть пустым');
+       } while(lastName=="");
+      
+       do{
+         name=prompt('Ведите ваше имя, поле ввода не должно быть пустым');
+       } while(name=="");
+
+       do{
+         middleName=prompt('Введите ваше отчество, поле ввода не должно быть пустым');
+       } while(middleName=="");
+         
+       let age=parseInt(prompt('Введите ваш возраст'));
+       let gender=confirm('Ваш пол мужской?');
+       let pension;
+
+       if (gender){
+           gender="Мужской";
+        } else {
+           gender="Женский";
+        }
+       /*if(){
+           pension="Да"
+        }else {
+           
+        }
+        if(gender=false||age>=58){
+           pension="Да"
+        }else {
+           pension="Нет";
+        }*/
+
+       alert('Ваше  ФИО: '+ lastName+' '+name+' '+middleName+'\n'+'Ваш возраст: '+age+'\n'+'Ваш возраст в днях: '+(age*365)+'\n'+'Через пять лет вам будет: '+(age+5)+'\n'+'Ваш пол:'+' '+gender+'\n'+'Вы на пенсии:'+' '+pension);
+       
+
+
+
+
+   </script>
 </body>
 </html>
