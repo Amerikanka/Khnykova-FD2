@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+  <a href="../index.html">Main</a>
+
+   <script>
+       
+       let lastName="";
+       let name="";
+       let maddleName="";
+      
+    
+
+       do{
+         lastName=prompt('Введите вашу фамилию, поле ввода не должно быть пустым');
+       } while(lastName=="");
+      
+       do{
+         name=prompt('Ведите ваше имя, поле ввода не должно быть пустым');
+       } while(name=="");
+
+       do{
+         middleName=prompt('Введите ваше отчество, поле ввода не должно быть пустым');
+       } while(middleName=="");
+        
+       const age=parseInt(prompt('Введите ваш возраст'));
+       let gender=confirm('Ваш пол мужской?');
+       let pension;
+
+
+        gender=(gender)?'Мужской':'Женский';
+        pension=(gender||age>=65)?'Да'  :'Нет';
+        pension=(!gender||age>=58)?'Да'  :'Нет';
+      
+
+       alert('Ваше  ФИО: '+ lastName+' '+name+' '+middleName +'\nВаш возраст: '+age+'\nВаш возраст в днях: '+(age*365)+'\nЧерез пять лет вам будет: '+(age+5)+'\nВаш пол: '+gender+'\nВы на пенсии: '+pension);
+       
+
+
+
+
+   </script>
+</body>
+</html>
