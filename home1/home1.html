@@ -15,6 +15,7 @@
        let name="";
        let maddleName="";
       
+      
        do{
          lastName=prompt('Введите вашу фамилию, поле ввода не должно быть пустым');
        } while(lastName=="");
@@ -26,29 +27,30 @@
        do{
          middleName=prompt('Введите ваше отчество, поле ввода не должно быть пустым');
        } while(middleName=="");
+       
+          
         
        const age=parseInt(prompt('Введите ваш возраст'));
        let gender=confirm('Ваш пол мужской?');
        let pension;
 
-       if (gender){
-            gender="Мужской";
-       } else {
-           gender="Женский";
-       } 
-           if(gender||age>=65){
+      
+        if(gender&&age>=65){
+          gender="Мужской";
           pension="Да";
-        }else {
+        }else if (gender&&age<65){
+          gender="Мужской"
+          pension="Нет";
+      }else if(!gender&&age>=58){
+        gender="Женский"
+          pension="Да";
+        } else  {
+          gender="Женский"
           pension="Нет";
         }
       
-       if(!gender||age>=58){
-          pension="Да";
-        }else {
-          pension="Нет";
-        }
 
-
+       
         alert(`Ваше ФИО: ${lastName} ${name} ${middleName}
               Ваш возраст: ${age} 
               Ваш возраст в днях: ${(age*365)} 
