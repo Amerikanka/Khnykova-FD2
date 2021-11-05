@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
 </head>
+
 <body>
    <a href="../index.html">Main</a>
    <script>
 
-"use strict";
+      "use strict";
 
-function randomDiap(n,m) {
-        return Math.floor(Math.random()*(m-n+1))+n;
-}
+      function randomDiap(n, m) {
+         return Math.floor(Math.random() * (m - n + 1)) + n;
+      }
 
-function mood(colorsCount) {
-    const colors=[ '', 'красный', 'оранжевый', 'жёлтый', 'зелёный', 'голубой', 'синий', 'фиолетовый' ];
-    let usedColors={};
-    for ( let i=1; i<=colorsCount; i++ ) {
-        let n=randomDiap(1,7);
-        let colorName=colors[n];
-        if (colorName in usedColors){
-           continue;
-        }else{
-         usedColors [colorName]=true;
-        }
-   console.log( colorName );
-    }
-}
+      function mood(colorsCount) {
+         const colors = ['', 'красный', 'оранжевый', 'жёлтый', 'зелёный', 'голубой', 'синий', 'фиолетовый'];
+         console.log('цветов: ' + colorsCount);
+         let usedColors = {};
+         let colorName = "";
+         for (let i = 1; i <= colorsCount; i++) {
+            do {
+               let n = randomDiap(1, 7);
+               colorName = colors[n];
+            } while (colorName in usedColors);
+            usedColors[colorName] = true;
+            console.log(colorName);
+         }
 
-mood(7);
+      }
+      mood(3);
 
 
    </script>
 </body>
+
 </html>
