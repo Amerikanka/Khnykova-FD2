@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <script>
+
+let text = prompt("");
+function trim(str) {
+let str1='';
+let str2='';
+for (let i = 0; i < str.length; i++) { 
+   if (str.charAt(i) !== " ") {
+       str1=str.slice(i);
+       break;
+      } 
+   }
+for (let j = str1.length-1; j >=0; j--) { 
+if (str1.charAt(j) !== " ") { 
+      str2=str1.slice(0,j+1);
+      break;
+   } 
+}
+return ('*'+str2+'*');
+}
+trim(text);
+
+
+
+
+   </script>
+</body>
+
+</html>
