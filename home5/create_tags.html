@@ -8,112 +8,112 @@
    <title>Document</title>
 </head>
 <style>
-  #forUl {
-     list-style: none;
-      margin-left: 0;
-      padding-left: 0;
-     
+   #forH1 {
+      display: flex;
+      flex-direction: column;
    }
+
    input {
       margin: 5px;
       width: 300px;
    }
-
 </style>
 
 <body>
-   <a href="../index.html">Main</a>
-   <div id="forH1">
-      <input name="text" placeholder="text">
-      <input name="prop" placeholder="property">
-      <input name="value" placeholder="value">
-   </div>
 
-   <button onclick="createH1()">create h1</button>
-   <button onclick="createP()">create p</button>
-   <button onclick="createLi()">create li</button>
-   <button onclick="createUl()">create ul</button>
+   <body>
+      <a href="../index.html">Main</a>
+      <div id="forH1">
+         <input name="text" placeholder="text">
+         <input name="prop" placeholder="property">
+         <input name="value" placeholder="value">
+      </div>
 
-   <ul id="forUl"></ul>
+      <button onclick="createH1()">create h1</button>
+      <button onclick="createP()">create p</button>
+      <button onclick="createLi()">create li</button>
+      <button onclick="createUl()">create ul</button>
+
+      <ul id="forUl"></ul>
 
 
- 
-   <script>
-      'use strict'
-      function createH1() {
-         const blockH1 = document.getElementById("forH1");
-         const h1Props = {};
-         for (let inp of blockH1.children) {
-            h1Props[inp.name] = inp.value;
+
+      <script>
+         'use strict'
+         function createH1() {
+            const blockH1 = document.getElementById("forH1");
+            const h1Props = {};
+            for (let inp of blockH1.children) {
+               h1Props[inp.name] = inp.value;
+            }
+            const createdEl = document.createElement("h1");
+            const body = document.getElementsByTagName("body");
+            body[0].appendChild(createdEl);
+            createdEl.style[h1Props.prop] = h1Props.value;
+            createdEl.innerText = h1Props.text;
+            cleanInput();
          }
-         const createdEl = document.createElement("h1");
-         const body = document.getElementsByTagName("body");
-         body[0].appendChild(createdEl);
-         createdEl.style[h1Props.prop] = h1Props.value;
-         createdEl.innerText = h1Props.text;
-         cleanInput();
-      }
 
-      function createP() {
-         const blockEl = document.getElementById("forH1");
-         const elProps = {};
-         for (let inp of blockEl.children) {
-            elProps[inp.name] = inp.value;
+         function createP() {
+            const blockEl = document.getElementById("forH1");
+            const elProps = {};
+            for (let inp of blockEl.children) {
+               elProps[inp.name] = inp.value;
+            }
+            const createdEl = document.createElement("p");
+            const body = document.getElementsByTagName("body");
+            body[0].appendChild(createdEl);
+            createdEl.style[elProps.prop] = elProps.value;
+            createdEl.innerText = elProps.text;
+            cleanInput();
          }
-         const createdEl = document.createElement("p");
-         const body = document.getElementsByTagName("body");
-         body[0].appendChild(createdEl);
-         createdEl.style[elProps.prop] = elProps.value;
-         createdEl.innerText = elProps.text;
-         cleanInput();
-      }
 
-      function createLi() {
-         const ul = document.getElementById("forUl");
-         const li = document.createElement("li");
-         const li1 = document.createElement("li");
-         const li2 = document.createElement("li");
-         const input = document.createElement("input");
-         input.setAttribute("name", "text");
-         input.setAttribute("placeholder", "text");
-         const input1 = document.createElement("input");
-         input1.setAttribute("name", "prop");
-         input1.setAttribute("placeholder", "property");
-         const input2 = document.createElement("input");
-         input2.setAttribute("name", "value");
-         input2.setAttribute("placeholder", "value");
-         li.appendChild(input);
-         li1.appendChild(input1);
-         li2.appendChild(input2);
-         ul.appendChild(li);
-         ul.appendChild(li1);
-         ul.appendChild(li2);
+         function createLi() {
+            const ul = document.getElementById("forUl");
+            const li = document.createElement("li");
+            const li1 = document.createElement("li");
+            const li2 = document.createElement("li");
+            const input = document.createElement("input");
+            input.setAttribute("name", "text");
+            input.setAttribute("placeholder", "text");
+            const input1 = document.createElement("input");
+            input1.setAttribute("name", "prop");
+            input1.setAttribute("placeholder", "property");
+            const input2 = document.createElement("input");
+            input2.setAttribute("name", "value");
+            input2.setAttribute("placeholder", "value");
+            li.appendChild(input);
+            li1.appendChild(input1);
+            li2.appendChild(input2);
+            ul.appendChild(li);
+            ul.appendChild(li1);
+            ul.appendChild(li2);
 
-      }
-
-      function createUl() {
-         const blockUl = document.getElementsByTagName("input")
-         const ulProps = {};
-         for (let inp of blockUl) {
-            ulProps[inp.name] = inp.value;
          }
-         const createUl = document.createElement('ul');
-         const createLi = document.createElement('li');
-         const body = document.getElementsByTagName('body');
-         createUl.appendChild(createLi);
-         body[0].appendChild(createUl);
-         createUl.style[ulProps.prop] = ulProps.value;
-         createLi.innerText = ulProps.text;
-         
-      }
 
-      function cleanInput(){
-         document.getElementsByTagName("input").value.value = "";
-         document.getElementsByTagName("input").text.value = "";
-         document.getElementsByTagName("input").prop.value = "";
-      }
-      
-   </script>
-</body>
+         function createUl() {
+            const blockUl = document.getElementsByTagName("input")
+            const ulProps = {};
+            for (let inp of blockUl) {
+               ulProps[inp.name] = inp.value;
+            }
+            const createUl = document.createElement('ul');
+            const createLi = document.createElement('li');
+            const body = document.getElementsByTagName('body');
+            createUl.appendChild(createLi);
+            body[0].appendChild(createUl);
+            createUl.style[ulProps.prop] = ulProps.value;
+            createLi.innerText = ulProps.text;
+
+         }
+
+         function cleanInput() {
+            document.getElementsByTagName("input").value.value = "";
+            document.getElementsByTagName("input").text.value = "";
+            document.getElementsByTagName("input").prop.value = "";
+         }
+
+      </script>
+   </body>
 
 </html>
