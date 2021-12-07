@@ -20,7 +20,12 @@
             "ъ": "ь",
             " ": "",
             ",": "",
-            ".": ""
+            ".": "",
+            "!": "",
+            "?": "",
+            ";": "",
+            ":": "",
+            "-": ""
          }
          text = text.toLowerCase();
 
@@ -42,9 +47,7 @@
 
          if (result1.length < 2) {
             return true;
-
          }
-
          if (result1[0] === result1[result1.length - 1]) {
             return func(result1.slice(1, (result1.length - 1)));
          } else {
