@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <a href="../index.html">Main</a>
+   <script>
+
+
+
+      function palindrome(text) {
+         const obj = {
+            "ё": "е",
+            "ъ": "ь",
+            " ": "",
+            ",": "",
+            ".": "",
+            "!": "",
+            "?": "",
+            ";": "",
+            ":": "",
+            "-": ""
+         }
+         text = text.toLowerCase();
+
+         let str = "";
+         for (let i = 0; i <= text.length - 1; i++) {
+            let textEl = text[i];
+            for (let k in obj) {
+               if (textEl === k) {
+                  textEl = obj[k];
+               }
+            }
+            str += textEl;
+         }
+         return func(str);
+      }
+
+
+      function func(result1) {
+
+         if (result1.length < 2) {
+            return true;
+         }
+         if (result1[0] === result1[result1.length - 1]) {
+            return func(result1.slice(1, (result1.length - 1)));
+         } else {
+            return false;
+         }
+      }
+
+
+
+
+
+   </script>
+</body>
+
+</html>
