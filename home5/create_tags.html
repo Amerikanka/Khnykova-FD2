@@ -76,7 +76,7 @@
       <script>
          'use strict'
          function createH1() {
-            const blockH1 = document.getElementById("forH1");
+            const blockH1 = document.querySelector(".input");
             const h1Props = {};
             for (let inp of blockH1.children) {
                h1Props[inp.name] = inp.value;
@@ -90,7 +90,7 @@
          }
 
          function createP() {
-            const blockEl = document.getElementById("forH1");
+            const blockEl = document.querySelector(".input");;
             const elProps = {};
             for (let inp of blockEl.children) {
                elProps[inp.name] = inp.value;
