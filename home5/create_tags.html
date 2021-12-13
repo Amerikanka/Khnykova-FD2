@@ -63,11 +63,11 @@
          </div>
          <div id="forLi">
             <div class="input" id="createUl">
-               <button onclick="createUl()">Create ul</button>
+               <button onclick="createLi()">Create li</button>
                <input name="text1" placeholder="text">
                <input name="prop1" placeholder="property">
                <input name="value1" placeholder="value">
-               <button onclick="createLi()">Add li</button>
+               <button onclick="appendUl()">Create ul</button>
             </div>
          </div>
       </div>
@@ -75,6 +75,8 @@
 
       <script>
          'use strict'
+         const createUl = document.createElement('ul');
+
          function createH1() {
             const blockH1 = document.querySelector(".input");
             const h1Props = {};
@@ -83,7 +85,7 @@
             }
             const createdEl = document.createElement("h1");
             const body = document.getElementsByTagName("body");
-            body[0].appendChild(createdEl);
+            document.body.appendChild(createdEl);
             createdEl.style[h1Props.prop] = h1Props.value;
             createdEl.innerText = h1Props.text;
             cleanInput();
@@ -97,16 +99,15 @@
             }
             const createdEl = document.createElement("p");
             const body = document.getElementsByTagName("body");
-            body[0].appendChild(createdEl);
+            document.body.appendChild(createdEl);
             createdEl.style[elProps.prop] = elProps.value;
             createdEl.innerText = elProps.text;
             cleanInput();
          }
 
-         function createUl() {
-            const createUl = document.createElement('ul');
-            const body = document.getElementsByTagName('body');
-            body[0].appendChild(createUl);
+         function appendUl() {
+
+            document.body.appendChild(createUl);
          }
 
          function createLi() {
@@ -116,11 +117,10 @@
                elProps[inp.name] = inp.value;
             }
             const createdEl = document.createElement("li");
-            const ul = document.querySelector("ul");
-            ul.appendChild(createdEl);
+            
             createdEl.style[elProps.prop1] = elProps.value1;
             createdEl.innerText = elProps.text1;
-           
+            createUl.appendChild(createdEl);
             document.getElementsByTagName("input").value1.value = "";
             document.getElementsByTagName("input").text1.value = "";
             document.getElementsByTagName("input").prop1.value = "";
