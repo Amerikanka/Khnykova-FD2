@@ -127,9 +127,10 @@
 
          }
          function cleanInput() {
+            document.getElementsByTagName("input").prop.value = "";
             document.getElementsByTagName("input").value.value = "";
             document.getElementsByTagName("input").text.value = "";
-            document.getElementsByTagName("input").prop.value = "";
+            
          }
 
       </script>
