@@ -67,7 +67,7 @@
                <input name="text1" placeholder="text">
                <input name="prop1" placeholder="property">
                <input name="value1" placeholder="value">
-               <button onclick="appendUl()">Create ul</button>
+               <button onclick="createUl()">Create ul</button>
             </div>
          </div>
       </div>
@@ -75,7 +75,7 @@
 
       <script>
          'use strict'
-         const createUl = document.createElement('ul');
+         const ul = document.createElement('ul');
 
          function createH1() {
             const blockH1 = document.querySelector(".input");
@@ -105,9 +105,9 @@
             cleanInput();
          }
 
-         function appendUl() {
+         function createUl() {
 
-            document.body.appendChild(createUl);
+            document.body.appendChild(ul);
          }
 
          function createLi() {
@@ -120,7 +120,7 @@
             
             createdEl.style[elProps.prop1] = elProps.value1;
             createdEl.innerText = elProps.text1;
-            createUl.appendChild(createdEl);
+            ul.appendChild(createdEl);
             document.getElementsByTagName("input").value1.value = "";
             document.getElementsByTagName("input").text1.value = "";
             document.getElementsByTagName("input").prop1.value = "";
