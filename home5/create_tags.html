@@ -8,14 +8,42 @@
    <title>Document</title>
 </head>
 <style>
-   #forH1 {
+   .list {
       display: flex;
       flex-direction: column;
    }
 
+   #forLi {
+      border: 1px solid black;
+      width: 300px;
+      margin: 5px;
+
+   }
+
+   #forH1 {
+      border: 1px solid black;
+      width: 300px;
+      margin: 5px;
+   }
+
+   .input {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+   }
+
    input {
       margin: 5px;
-      width: 300px;
+      width: 250px;
+   }
+
+   button {
+      width: 100px;
+      margin: 3px;
+      padding: 3px;
+      border-radius: 5px;
+      
+
    }
 </style>
 
@@ -23,19 +51,26 @@
 
    <body>
       <a href="../index.html">Main</a>
-      <div id="forH1">
-         <input name="text" placeholder="text">
-         <input name="prop" placeholder="property">
-         <input name="value" placeholder="value">
+      <div class="list">
+         <div id="forH1">
+            <div class="input">
+               <input name="text" placeholder="text">
+               <input name="prop" placeholder="property">
+               <input name="value" placeholder="value">
+               <button onclick="createH1()">Create h1</button>
+               <button onclick="createP()">Create p</button>
+            </div>
+         </div>
+         <div id="forLi">
+            <div class="input" id="createUl">
+               <button onclick="createUl()">Create ul</button>
+               <input name="text1" placeholder="text">
+               <input name="prop1" placeholder="property">
+               <input name="value1" placeholder="value">
+               <button onclick="createLi()">Add li</button>
+            </div>
+         </div>
       </div>
-
-      <button onclick="createH1()">create h1</button>
-      <button onclick="createP()">create p</button>
-      <button onclick="createLi()">create li</button>
-      <button onclick="createUl()">create ul</button>
-
-      <ul id="forUl"></ul>
-
 
 
       <script>
@@ -68,45 +103,29 @@
             cleanInput();
          }
 
-         function createLi() {
-            const ul = document.getElementById("forUl");
-            const li = document.createElement("li");
-            const li1 = document.createElement("li");
-            const li2 = document.createElement("li");
-            const input = document.createElement("input");
-            input.setAttribute("name", "text");
-            input.setAttribute("placeholder", "text");
-            const input1 = document.createElement("input");
-            input1.setAttribute("name", "prop");
-            input1.setAttribute("placeholder", "property");
-            const input2 = document.createElement("input");
-            input2.setAttribute("name", "value");
-            input2.setAttribute("placeholder", "value");
-            li.appendChild(input);
-            li1.appendChild(input1);
-            li2.appendChild(input2);
-            ul.appendChild(li);
-            ul.appendChild(li1);
-            ul.appendChild(li2);
-
-         }
-
          function createUl() {
-            const blockUl = document.getElementsByTagName("input")
-            const ulProps = {};
-            for (let inp of blockUl) {
-               ulProps[inp.name] = inp.value;
-            }
             const createUl = document.createElement('ul');
-            const createLi = document.createElement('li');
             const body = document.getElementsByTagName('body');
-            createUl.appendChild(createLi);
             body[0].appendChild(createUl);
-            createUl.style[ulProps.prop] = ulProps.value;
-            createLi.innerText = ulProps.text;
-
          }
 
+         function createLi() {
+            const blockEl = document.getElementById("createUl");
+            const elProps = {};
+            for (let inp of blockEl.children) {
+               elProps[inp.name] = inp.value;
+            }
+            const createdEl = document.createElement("li");
+            const ul = document.querySelector("ul");
+            ul.appendChild(createdEl);
+            createdEl.style[elProps.prop1] = elProps.value1;
+            createdEl.innerText = elProps.text1;
+           
+            document.getElementsByTagName("input").value1.value = "";
+            document.getElementsByTagName("input").text1.value = "";
+            document.getElementsByTagName("input").prop1.value = "";
+
+         }
          function cleanInput() {
             document.getElementsByTagName("input").value.value = "";
             document.getElementsByTagName("input").text.value = "";
