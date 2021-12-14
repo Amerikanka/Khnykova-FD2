@@ -11,13 +11,13 @@
 <body>
    <script>
 
-      function search() {
-         const obj = ["а", "о", "и", "е", "ё", "э", "ы", "у", "ю", "я"];
+      function searchVowels() {
+         const vowels = ["а", "о", "и", "е", "ё", "э", "ы", "у", "ю", "я"];
          let count = 0;
          let str = prompt('Введите строку');
          for (let i = 0; i < str.length; i++) {
-            for (let j = 0; j < obj.length; j++) {
-               if (str[i] === obj[j]) {
+            for (let j = 0; j < vowels.length; j++) {
+               if (str[i] === vowels[j]) {
                   count++;
                   break;
                }
@@ -25,7 +25,7 @@
          }
          return count;
       }
-      console.log(search());
+      console.log(searchVowels());
      
 
    </script>
