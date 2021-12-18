@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+
+   <style>
+      button {
+         width: 100px;
+         height: 60px;
+         border-radius: 5px;
+         background-color: rgb(146, 185, 221);
+      };
+
+     
+   </style>
+</head>
+
+<body>
+   <button id='add-drink'>Ввод информации о напитке</button>
+   <button id='get-drink'>Получение информации о напитке</button>
+   <button id='delete-drink'>Удаление информации о напитке</button>
+   <button id='all-drink'>Перечень всех напитков</button>
+
+   <script>
+      class HashStorageClass {
+         constructor() {
+            this.drinks = {};
+         }
+
+         addValue(key, value) {
+            this.drinks[key] = value;
+
+         }
+
+         getValue(key) {
+            return this.drinks[key];
+         }
+
+         deleteValue(key) {
+            if (!(key in this.drinks)) {
+               return false;
+            } else {
+               return delete this.drinks[key];
+            }
+         }
+
+         getKeys() {
+            return Object.keys(this.drinks);
+         }
+      };
+
+      const drinkStorage = new HashStorageClass();
+
+
+
+      const btnAddDrink = document.getElementById('add-drink');
+      const btnGetDrink = document.getElementById('get-drink');
+      const btnDeleteDrink = document.getElementById('delete-drink');
+      const btnAllDrink = document.getElementById('all-drink');
+
+      btnAddDrink.addEventListener('click', function () {
+         const name = prompt('Ведите название');
+         const isAlcohol = prompt('Алкогольный?');
+         const recipe = prompt('Введите рецепт');
+         drinkStorage.addValue(name, { 'напиток': name, 'алкогольный': isAlcohol, 'рецепт приготовления': recipe });
+         alert(`Напиток ${name} добавлен в хранилище!`)
+         console.log(drinkStorage.drinks);
+      });
+
+      btnGetDrink.addEventListener('click', function () {
+         const isDrink = prompt("Введите название напитка:");
+         if (isDrink in drinkStorage.drinks) {
+            const a = drinkStorage.getValue(isDrink);
+            console.log(a);
+            for (let k in a) {
+               let b = k + ':' + a[k];
+               const p = document.createElement("p");
+               const div = document.createElement("div");
+               p.append(b);
+               div.appendChild(p);
+               document.body.appendChild(div);
+            }
+         } else {
+            alert('Такого напитка нет в хранилище!');
+         }
+
+      });
+
+      btnDeleteDrink.addEventListener('click', function () {
+         const isDrink = prompt("Введите название напитка:");
+         if (isDrink in drinkStorage.drinks) {
+            drinkStorage.deleteValue(isDrink);
+            alert('Напиток удален!');
+         } else {
+            alert('Такого напитка нет в хранилище!')
+         }
+      });
+
+      btnAllDrink.addEventListener('click', function () {
+
+         alert(`Список напитков: ${drinkStorage.getKeys()}`);
+      })
+
+
+
+   </script>
+</body>
+
+</html>
