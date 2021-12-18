@@ -13,10 +13,9 @@
          height: 60px;
          border-radius: 5px;
          background-color: rgb(146, 185, 221);
-      };
+      }
 
-     
-   </style>
+       </style>
 </head>
 
 <body>
@@ -69,21 +68,18 @@
          const recipe = prompt('Введите рецепт');
          drinkStorage.addValue(name, { 'напиток': name, 'алкогольный': isAlcohol, 'рецепт приготовления': recipe });
          alert(`Напиток ${name} добавлен в хранилище!`)
-         console.log(drinkStorage.drinks);
       });
 
       btnGetDrink.addEventListener('click', function () {
          const isDrink = prompt("Введите название напитка:");
          if (isDrink in drinkStorage.drinks) {
-            const a = drinkStorage.getValue(isDrink);
-            console.log(a);
-            for (let k in a) {
-               let b = k + ':' + a[k];
+            const arr = drinkStorage.getValue(isDrink);
+            for (let k in arr) {
+               let str = k + ':' + arr[k];
                const p = document.createElement("p");
-               const div = document.createElement("div");
-               p.append(b);
-               div.appendChild(p);
-               document.body.appendChild(div);
+               p.append(str);
+               console.log(p);
+               document.body.appendChild(p);
             }
          } else {
             alert('Такого напитка нет в хранилище!');
