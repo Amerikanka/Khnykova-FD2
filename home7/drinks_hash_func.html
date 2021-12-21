@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+
+   <style>
+      button {
+         width: 100px;
+         height: 60px;
+         border-radius: 5px;
+         background-color: rgb(146, 185, 221);
+      }
+
+      p {
+         font-weight: 800;
+         font-size: 20px;
+      }
+
+      li {
+         font-size: 18px;
+      }
+   </style>
+</head>
+
+<body>
+   <a href="../index.html">Main</a>
+   <button id='add-drink'>Ввод информации о напитке</button>
+   <button id='get-drink'>Получение информации о напитке</button>
+   <button id='delete-drink'>Удаление информации о напитке</button>
+   <button id='all-drink'>Перечень всех напитков</button>
+   <div id="list-info"></div>
+
+   <script>
+
+      function HashStorageFunc() {
+         const self=this;
+         drinks = {};
+
+         self.addValue = function (key, value) {
+            drinks[key] = value;
+         };
+
+         self.getValue = function (key) {
+            return drinks[key];
+         };
+
+         self.deleteValue = function (key) {
+            if (!(key in drinks)) {
+               return false;
+            } else {
+               return delete drinks[key];
+            }
+         };
+         
+         self.getKeys = function () {
+            return Object.keys(drinks);
+         };
+      };
+
+
+      const drinkStorage = new HashStorageFunc();
+
+      const btnAddDrink = document.getElementById('add-drink');
+      const btnGetDrink = document.getElementById('get-drink');
+      const btnDeleteDrink = document.getElementById('delete-drink');
+      const btnGetDrinks = document.getElementById('all-drink');
+      const list = document.getElementById('list-info');
+
+      btnAddDrink.addEventListener('click', function () {
+         const name = prompt('Ведите название');
+         const isAlcohol = prompt('Алкогольный?');
+         const recipe = prompt('Введите рецепт');
+         drinkStorage.addValue(name, { 'напиток': name, 'алкогольный': isAlcohol, 'рецепт приготовления': recipe });
+         alert(`Напиток ${name} добавлен в хранилище!`)
+         console.log(drinkStorage);
+      });
+
+      btnGetDrink.addEventListener('click', function () {
+         const isDrink = prompt("Введите название напитка:");
+         const arr = drinkStorage.getValue(isDrink);
+         if (arr) {
+            const p = document.createElement("p");
+            p.textContent = `Информация о напитке ${isDrink}:`;
+            const ul = document.createElement("ul");
+            for (let k in arr) {
+               const li = document.createElement("li");
+               li.append(`${k} : ${arr[k]}`);
+               ul.appendChild(li);
+
+            }
+            list.appendChild(p);
+            list.appendChild(ul);
+         } else {
+            alert('Такого напитка нет в хранилище!');
+         }
+
+      });
+
+      btnDeleteDrink.addEventListener('click', function () {
+         const isDrink = prompt("Введите название напитка:");
+         if (drinkStorage.deleteValue(isDrink)) {
+            alert(`Напиток ${isDrink} удален!`);
+         } else {
+            alert('Такого напитка нет в хранилище!')
+         }
+      });
+
+      btnGetDrinks.addEventListener('click', function () {
+         const keys = (drinkStorage.getKeys());
+         if (keys.length < 1) {
+            alert('В хранилище нет напитков!')
+         } else {
+            const p = document.createElement("p");
+            p.textContent = 'Список напитков в хранилище:';
+            const ul = document.createElement("ul");
+            for (let i of keys) {
+               const li = document.createElement("li");
+               li.textContent = i;
+               ul.appendChild(li);
+            }
+            list.appendChild(p);
+            list.appendChild(ul);
+         }
+      });
+
+
+   </script>
+</body>
+
+</html>
