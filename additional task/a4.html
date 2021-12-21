@@ -12,7 +12,7 @@
    <a href="../index.html">Main</a>
    <script>
 
-
+     const txt = prompt('Введите строку:');
 
       function palindrome(text) {
          const obj = {
@@ -46,15 +46,16 @@
       function func(result1) {
 
          if (result1.length < 2) {
-            return true;
+            return alert (true);
          }
          if (result1[0] === result1[result1.length - 1]) {
             return func(result1.slice(1, (result1.length - 1)));
          } else {
-            return false;
+            return alert (false);
          }
-      }
+      };
 
+      palindrome(txt);
 
 
 
