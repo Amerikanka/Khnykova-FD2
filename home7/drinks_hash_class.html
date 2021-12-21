@@ -16,8 +16,12 @@
       }
 
       p {
-
          font-weight: 800;
+         font-size: 20px;
+      }
+
+      li {
+         font-size: 18px;
       }
    </style>
 </head>
@@ -28,32 +32,33 @@
    <button id='get-drink'>Получение информации о напитке</button>
    <button id='delete-drink'>Удаление информации о напитке</button>
    <button id='all-drink'>Перечень всех напитков</button>
+   <div id="list-info"></div>
 
    <script>
       class HashStorageClass {
          constructor() {
-            this.drinks = {};
+            this.storage = {};
          }
 
          addValue(key, value) {
-            this.drinks[key] = value;
+            this.storage[key] = value;
 
          }
 
          getValue(key) {
-            return this.drinks[key];
+            return this.storage[key];
          }
 
          deleteValue(key) {
-            if (!(key in this.drinks)) {
+            if (!(key in this.storage)) {
                return false;
             } else {
-               return delete this.drinks[key];
+               return delete this.storage[key];
             }
          }
 
          getKeys() {
-            return Object.keys(this.drinks);
+            return Object.keys(this.storage);
          }
       };
 
@@ -64,7 +69,8 @@
       const btnAddDrink = document.getElementById('add-drink');
       const btnGetDrink = document.getElementById('get-drink');
       const btnDeleteDrink = document.getElementById('delete-drink');
-      const btnAllDrink = document.getElementById('all-drink');
+      const btnGetDrinks = document.getElementById('all-drink');
+      const list = document.getElementById('list-info');
 
       btnAddDrink.addEventListener('click', function () {
          const name = prompt('Ведите название');
@@ -72,18 +78,24 @@
          const recipe = prompt('Введите рецепт');
          drinkStorage.addValue(name, { 'напиток': name, 'алкогольный': isAlcohol, 'рецепт приготовления': recipe });
          alert(`Напиток ${name} добавлен в хранилище!`)
+         console.log(drinkStorage);
       });
 
       btnGetDrink.addEventListener('click', function () {
          const isDrink = prompt("Введите название напитка:");
-         if (isDrink in drinkStorage.drinks) {
-            const arr = drinkStorage.getValue(isDrink);
+         const arr = drinkStorage.getValue(isDrink);
+         if (arr) {
+            const p = document.createElement("p");
+            p.textContent = `Информация о напитке ${isDrink}:`;
+            const ul = document.createElement("ul");
             for (let k in arr) {
-               let str = k + ':' + arr[k];
-               const p = document.createElement("p");
-               p.append(str);
-               document.body.appendChild(p);
+               const li = document.createElement("li");
+               li.append(`${k} : ${arr[k]}`);
+               ul.appendChild(li);
+
             }
+            list.appendChild(p);
+            list.appendChild(ul);
          } else {
             alert('Такого напитка нет в хранилище!');
          }
@@ -92,20 +104,30 @@
 
       btnDeleteDrink.addEventListener('click', function () {
          const isDrink = prompt("Введите название напитка:");
-         if (isDrink in drinkStorage.drinks) {
-            drinkStorage.deleteValue(isDrink);
-            alert('Напиток удален!');
+         if (drinkStorage.deleteValue(isDrink)) {
+            alert(`Напиток ${isDrink} удален!`);
          } else {
             alert('Такого напитка нет в хранилище!')
          }
       });
 
-      btnAllDrink.addEventListener('click', function () {
-
-         alert(`Список напитков: ${drinkStorage.getKeys()}`);
+      btnGetDrinks.addEventListener('click', function () {
+         const keys = (drinkStorage.getKeys());
+         if (keys.length < 1) {
+            alert('В хранилище нет напитков!')
+         } else {
+            const p = document.createElement("p");
+            p.textContent = 'Список напитков в хранилище:';
+            const ul = document.createElement("ul");
+            for (let i of keys) {
+               const li = document.createElement("li");
+               li.textContent = i;
+               ul.appendChild(li);
+            }
+            list.appendChild(p);
+            list.appendChild(ul);
+         }
       })
-
-
 
    </script>
 </body>
