@@ -12,6 +12,8 @@
    <a href="../index.html">Main</a>
    <script>
 
+     const str = prompt('Введите строку:');
+
       function palindrome(text) {
          const obj = {
             "ё": "е",
@@ -29,24 +31,23 @@
          let result = "";
 
          for (let i = 0; i <= text.length - 1; i++) {
-            let textEl=text[i];
+            let textEl = text[i];
             for (let k in obj) {
                if (textEl === k) {
-                  textEl= obj[k];
+                  textEl = obj[k];
+               }
             }
+            result += textEl;
          }
-         result += textEl;
-      }
 
          if (result.split('').reverse().join('') === result) {
-            return true;
+            return alert(true);
          } else {
-            return false;
+            return alert(false);
          }
-
-
       }
 
+      palindrome(str);
    </script>
 </body>
 
