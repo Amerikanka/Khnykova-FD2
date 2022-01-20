@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <a href="../index.html">Main</a>
+   <script>
+
+      const s = prompt('Введите строку');
+      function searchVowelsForEach(str) {
+         const vowels = ["а", "о", "и", "е", "ё", "э", "ы", "у", "ю", "я"];
+         let count = 0;
+         str = str.toLowerCase().split('');
+         str.forEach((elem) => {
+            if (vowels.includes(elem.toLowerCase())) {
+               count++;
+            }
+         })
+         return count;
+      };
+
+      function searchVowelsFilter(str) {
+         const vowels = ["а", "о", "и", "е", "ё", "э", "ы", "у", "ю", "я"];
+         let count = 0;
+         str = str.toLowerCase().split('');
+         return str.filter((elem) => vowels.includes(elem)).length;
+      };
+
+      function searchVowelsReduce(str) {
+         const vowels = ["а", "о", "и", "е", "ё", "э", "ы", "у", "ю", "я"];
+         str = str.toLowerCase().split('');
+         return str.reduce((count, elem) => vowels.includes(elem) ? count+1 : count, 0);
+      };
+
+      console.log(searchVowelsForEach(s));
+      console.log(searchVowelsFilter(s));
+      console.log(searchVowelsReduce(s));
+   </script>
+</body>
+
+</html>
